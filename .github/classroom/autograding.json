@@ -21,9 +21,9 @@
       "points": null
     },
     {
-      "name": "exercise-11-1",
+      "name": "exercise-10-1",
       "setup": "",
-      "run": "pytest tests/ -m e11_1",
+      "run": "pytest tests/ -m e10_1",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -31,9 +31,9 @@
       "points": 2
     },
     {
-      "name": "exercise-11-2",
+      "name": "exercise-10-2",
       "setup": "",
-      "run": "pytest tests/ -m e11_2",
+      "run": "pytest tests/ -m e10_2",
       "input": "",
       "output": "",
       "comparison": "included",

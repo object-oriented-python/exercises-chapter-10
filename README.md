@@ -1,5 +1,9 @@
-# Week 11 Exercises
+# Object-oriented Programming in Python for Mathematicians
 
-Refer to the exercise instructions at https://object-oriented-python.github.io/11_further_object-oriented_features.html#exercises
+## Chapter 10 Exercises
 
-These tests are for exercises 11.1 and 11.2. The tests build sequentially, so by exercise 11.2, all tests should pass with a correct implementation.
+Refer to the [exercise
+instructions](https://object-oriented-python.github.io/10_further_object-oriented_features.html#exercises).
+
+These tests are for exercises 10.1 and 10.2. The tests build sequentially, so
+by exercise 10.2, all tests should pass with a correct implementation.

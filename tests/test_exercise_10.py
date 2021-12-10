@@ -24,12 +24,12 @@ except ImportError:
     pass
 
 
-@pytest.mark.e11_1
+@pytest.mark.e10_1
 def test_import():
     from log_decorator import log_call
 
 
-@pytest.mark.e11_1
+@pytest.mark.e10_1
 def test_decorator():
     @log_call
     def foo(*args, **kwargs):
@@ -40,7 +40,7 @@ def test_decorator():
     assert logmsg == "Calling: foo('a', d='b', c=2)"
 
 
-@pytest.mark.e11_2
+@pytest.mark.e10_2
 def test_logger_called():
 
     C = CyclicGroup(2)
@@ -49,7 +49,7 @@ def test_logger_called():
     assert logmsg == "Calling: _validate(CyclicGroup(2), 1)"
 
 
-@pytest.mark.e11_2
+@pytest.mark.e10_2
 def test_logger_in_original_location():
 
     def _validate(self, value):
