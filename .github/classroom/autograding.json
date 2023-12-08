@@ -23,7 +23,7 @@
     {
       "name": "exercise-10-1",
       "setup": "",
-      "run": "venv/bin/python python pytest tests/ -m e10_1",
+      "run": "venv/bin/python -m  pytest tests/ -m e10_1",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -33,7 +33,7 @@
     {
       "name": "exercise-10-2",
       "setup": "",
-      "run": "venv/bin/python python pytest tests/ -m e10_2",
+      "run": "venv/bin/python -m pytest tests/ -m e10_2",
       "input": "",
       "output": "",
       "comparison": "included",
