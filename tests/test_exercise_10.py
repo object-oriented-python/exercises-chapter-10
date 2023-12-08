@@ -16,7 +16,11 @@ def info(msg):
 
 logging.info = info
 
-from groups.groups import Group, CyclicGroup, GeneralLinearGroup
+
+try:
+    from groups.groups import Group, CyclicGroup
+except ImportError:
+    pass
 
 try:
     from log_decorator.log_decorator import log_call
