@@ -1,11 +1,73 @@
-    name: GitHub Classroom Workflow
-
-    on: [push]
-
-    jobs:
-      build:
-        name: Autograding
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - uses: education/autograding@v1
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  actions: read
+  checks: write
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Install Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - id: setup
+      name: setup
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        command: venv/bin/python -m pip install install setuptools pytest flake8 pep8-naming
+          flake8-docstrings numpy
+        max-score: null
+        setup-command: python3 -m venv venv
+        test-name: setup
+        timeout: 1
+    - id: install_package
+      name: install_package
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        command: venv/bin/python -m pip install -e .
+        max-score: null
+        setup-command: ''
+        test-name: install_package
+        timeout: 1
+    - id: exercise-10-1
+      name: exercise-10-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        command: venv/bin/python -m  pytest tests/ -m e10_1
+        max-score: 2
+        setup-command: ''
+        test-name: exercise-10-1
+        timeout: 1
+    - id: exercise-10-2
+      name: exercise-10-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        command: venv/bin/python -m pytest tests/ -m e10_2
+        max-score: 2
+        setup-command: ''
+        test-name: exercise-10-2
+        timeout: 1
+    - id: flake8
+      name: flake8
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        command: venv/bin/python -m flake8
+        max-score: 2
+        setup-command: ''
+        test-name: flake8
+        timeout: 1
+    - env:
+        EXERCISE-10-1_RESULTS: ${{steps.exercise-10-1.outputs.result}}
+        EXERCISE-10-2_RESULTS: ${{steps.exercise-10-2.outputs.result}}
+        FLAKE8_RESULTS: ${{steps.flake8.outputs.result}}
+        SETUP_RESULTS: ${{steps.setup.outputs.result}}
+      name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      with:
+        runners: setup, exercise-10-1, exercise-10-2, flake8
